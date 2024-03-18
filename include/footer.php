@@ -100,8 +100,53 @@
 <script src="js/google-map.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+<!-- JS for errors -->
+<script>
+    // Executes the page first before running this function
+    $(document).ready(function() {
+        <?php
+        if (isset($_SESSION['status'])) {
+        ?>
+            $.notify("<?= $_SESSION['status'] ?>");
+
+        <?php unset($_SESSION['status']);
+        } ?>
+    })
+</script>
+
+<!-- Notify JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 <script src="js/main.js"></script>
+
+
+<!-- <?php
+        if (isset($_SESSION['error']) or isset($_SESSION['success'])) {
+            $bgColour = isset($_SESSION['error']) ? "danger" : "success";
+        ?>
+    <div class="toast-container position-absolute top-0 end-0 p-3 pt-5" style="z-index:1100;margin-top:3rem;">
+        <div class="toast align-items-center text-bg-<?= $bgColour ?> border-0 position-relative top-0 end-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <?= isset($_SESSION['error']) ? $_SESSION['error'] : $_SESSION['success'] ?>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl)
+        })
+        toastList.forEach(toast => toast.show());
+    </script>
+<?php
+            unset($_SESSION['error']);
+            unset($_SESSION['success']);
+        }
+?> -->
 
 </body>
 

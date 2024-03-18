@@ -6,9 +6,9 @@ $dbpassword = "";
 $dbname = "medlabs";
 
 // Create connection
-$con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
+$conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 
 // Check connection
-if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }

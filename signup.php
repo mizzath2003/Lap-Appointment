@@ -21,7 +21,7 @@ require "components/navbar.php";
         </div>
         <div class="row align-items-center">
             <div class="mx-auto">
-                <form onsubmit="return verifyPasswords()" action="dbh/userRegister" method="POST" class="d-flex flex-column justify-content-center align-items-center row g-3 needs-validation " novalidate>
+                <form onsubmit="return verifyPasswords()" action="dbh/userRegister.php" method="POST" class="d-flex flex-column justify-content-center align-items-center row g-3 needs-validation " novalidate>
                     <div class="col-md-5 ">
                         <label for="validationCustom01" class="form-label colorBlack">Name</label>
                         <input type="text" class="form-control" id="validationCustom01" name="name" required>
@@ -40,7 +40,7 @@ require "components/navbar.php";
                     </div>
                     <div class="col-md-5 ">
                         <label for="validationCustom08" class="form-label colorBlack">Mobile Number</label>
-                        <input type="text" class="form-control" name="mobile" id="validationCustom08" required>
+                        <input type="text" class="form-control" name="phone" id="validationCustom08" required>
                         <div class="invalid-feedback">
                             Please enter a valid mobile number.
                         </div>
@@ -56,8 +56,9 @@ require "components/navbar.php";
 
 
                     <div class="d-grid gap-2 mb-3 mt-5 col-5 mx-auto">
-                        <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-lg" name="submit">Sign Up</button>
                     </div>
+
                     <p class="text-center">Already have an account? <a href="login.php">Login</a></p>
                     <div class="mt-2 alert alert-danger" role="alert" id="error" style="visibility:hidden">
                         Passwords do not match
