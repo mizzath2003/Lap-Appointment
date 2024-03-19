@@ -21,7 +21,7 @@ require "components/navbar.php";
         </div>
         <div class="row align-items-center">
             <div class="mx-auto">
-                <form onsubmit="return verifyPasswords()" action="dbh/userLogin" method="POST" class="d-flex flex-column justify-content-center align-items-center row g-3 needs-validation " novalidate>
+                <form onsubmit="return verifyPasswords()" action="dbh/userLogin.php" method="POST" class="d-flex flex-column justify-content-center align-items-center row g-3 needs-validation " novalidate>
 
                     <div class="col-md-5 ">
                         <label for="validationCustomUsername" class="form-label colorBlack">Email</label>
@@ -44,7 +44,7 @@ require "components/navbar.php";
 
 
                     <div class="d-grid gap-2 mb-3 mt-5 col-5 mx-auto">
-                        <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+                        <button type="submit" name="submit" class="btn btn-primary btn-lg">Sign In</button>
                     </div>
                     <p class="text-center">Don't have an account? <a href="signup.php">Sign Up</a></p>
                     <div class="mt-2 alert alert-danger" role="alert" id="error" style="visibility:hidden">

@@ -30,24 +30,24 @@ require "components/navbar.php";
                         </div>
                     </div>
                     <div class="col-md-5 ">
-                        <label for="validationCustomUsername" class="form-label colorBlack">Email</label>
+                        <label for="validationCustom02" class="form-label colorBlack">Email</label>
                         <div class="input-group has-validation">
-                            <input type="email" class="form-control" id="validationCustomUsername" name="email" aria-describedby="inputGroupPrepend" required>
+                            <input type="email" class="form-control" id="validationCustom02" name="email" aria-describedby="inputGroupPrepend" required>
                             <div class="invalid-feedback">
                                 Please enter a valid email.
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5 ">
-                        <label for="validationCustom08" class="form-label colorBlack">Mobile Number</label>
-                        <input type="text" class="form-control" name="phone" id="validationCustom08" required>
+                        <label for="validationCustom03" class="form-label colorBlack">Mobile Number</label>
+                        <input type="text" class="form-control" name="phone" id="validationCustom03" required>
                         <div class="invalid-feedback">
                             Please enter a valid mobile number.
                         </div>
                     </div>
                     <div class="col-md-5 ">
-                        <label for="pass1" class="form-label colorBlack">Password</label>
-                        <input type="password" class="form-control" id="pass1" name="password" required onkeyup="hideError()">
+                        <label for="validationCustom04" class="form-label colorBlack">Password</label>
+                        <input type="password" class="form-control" id="validationCustom04" name="password" required onkeyup="hideError()">
                         <div class="invalid-feedback">
                             Please enter a valid Password.
                         </div>
