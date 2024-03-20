@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 define("PAGE_TITLE", "Lab Service");
 require "include/header.php";
 require "components/navbar.php";

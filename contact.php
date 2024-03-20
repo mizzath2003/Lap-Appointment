@@ -32,7 +32,7 @@ require "components/navbar.php";
                         <span class="icon-map-signs"></span>
                     </div>
                     <h3 class="mb-4">Address</h3>
-                    <p>2 Chittampalam A Gardiner Mawatha, Colombo 02 00200</p>
+                    <p>2 Chittampalam A Gardiner Mawatha, Colombo 02</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -50,7 +50,7 @@ require "components/navbar.php";
                         <span class="icon-paper-plane"></span>
                     </div>
                     <h3 class="mb-4">Email Address</h3>
-                    <p><a href="mailto:info@yoursite.com">info@healthcrew.com</a></p>
+                    <p><a href="mailto:info@yoursite.com">info@medlabs.com</a></p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -65,19 +65,24 @@ require "components/navbar.php";
         </div>
         <div class="row no-gutters block-9">
             <div class="col-md-6 order-md-last d-flex">
-                <form action="#" class="bg-light p-5 contact-form">
+                <form class="bg-light p-5 contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+                    <!-- Replace with your Access Key -->
+                    <input type="hidden" name="access_key" value="047ce419-77d0-42f5-aa07-6777e5856641">
+
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                        <input type="text" class="form-control" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject">
+                        <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-                    </div>
+
+                    <!-- hCaptcha Spam Protection -->
+                    <div class="h-captcha" data-captcha="true"></div>
+
                     <div class="form-group">
                         <input type="submit" value="Send Message" class="btn btn-secondary py-3 px-5">
                     </div>
@@ -91,5 +96,8 @@ require "components/navbar.php";
         </div>
     </div>
 </section>
+
+<!-- Required for hCaptcha -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
 
 <?php require "include/footer.php"; ?>

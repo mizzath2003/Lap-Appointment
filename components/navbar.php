@@ -64,7 +64,7 @@
                 }
                 ?>
 
-                <li class="nav-item cta mr-md-2"><a href="appointment.php" class="nav-link">Book Appointment</a></li>
+                <li class="nav-item cta mr-md-2"><a href="bookAppointment.php" class="nav-link">Book Appointment</a></li>
             </ul>
         </div>
     </div>

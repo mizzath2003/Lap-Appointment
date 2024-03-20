@@ -18,7 +18,7 @@ require "components/testCard.php";
                     <h1 class="mb-4">We are here <br>for your Care</h1>
                     <p class="mb-4">
                         In our lab , we're dedicated to providing accurate diagnostics and analysis, ensuring your health needs are met with precision and care.</p>
-                    <p><a href="#" class="btn btn-primary py-3 px-4">Make an appointment</a></p>
+                    <p><a href="bookAppointment.php" class="btn btn-primary py-3 px-4">Make an appointment</a></p>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@ require "components/testCard.php";
                             <h2 class="mb-4">We Are <span>Med Labs</span> A Cutting-Edge Medical Lab</h2>
                             <p>
                                 Welcome to Med Labs, your trusted partner for accurate diagnostics. With advanced technology and expert staff, we deliver precise results swiftly. Your health is our priority.</p>
-                            <p><a href="#" class="btn btn-primary py-3 px-4">Make an appointment</a> <a href="contact.php" class="btn btn-secondary py-3 px-4">Contact us</a></p>
+                            <p><a href="bookAppointment.php" class="btn btn-primary py-3 px-4">Make an appointment</a> <a href="contact.php" class="btn btn-secondary py-3 px-4">Contact us</a></p>
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@ require "components/testCard.php";
             <div class="col-md-5 heading-section heading-section-white">
                 <span class="subheading">Fun facts</span>
                 <h2 class="mb-4">Over 5,100 patients trust us</h2>
-                <p class="mb-0"><a href="#" class="btn btn-secondary px-4 py-3">Make an appointment</a></p>
+                <p class="mb-0"><a href="bookAppointment.php" class="btn btn-secondary px-4 py-3">Make an appointment</a></p>
             </div>
             <div class="col-md-7">
                 <div class="row pt-4">

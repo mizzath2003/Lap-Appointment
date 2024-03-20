@@ -9,6 +9,7 @@ require "components/navbar.php";
 <style>
     .colorBlack {
         color: black;
+        font-weight: 600;
     }
 </style>
 
