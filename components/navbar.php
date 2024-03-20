@@ -8,14 +8,21 @@
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
                         <span class="text">+1234 5678 90</span>
                     </div>
-                    <div class="col-md pr-4 d-flex topper align-items-center">
+                    <div class="col-md pr-4 d-flex topper align-items-center ">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
                         <span class="text">info@medlabs.com</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
 
+                        <?php
+                        if (!isset($_SESSION['email'])) {
+                        ?>
+                            <p class="mb-0 register-link"><a href="signup.php" class="mr-3">Sign Up</a><a href="login.php">Sign In</a></p>
 
-                        <p class="mb-0 register-link"><a href="signup.php" class="mr-3">Sign Up</a><a href="login.php">Sign In</a></p>
+                        <?php
+                        }
+                        ?>
+
 
                     </div>
                 </div>
@@ -36,15 +43,28 @@
             <ul class="navbar-nav nav ml-auto">
                 <li class="nav-item"><a href="index.php" class="nav-link"><span>Home</span></a></li>
                 <li class="nav-item"><a href="test.php" class="nav-link"><span>Lab Services</span></a></li>
+
+                <?php
+                if (isset($_SESSION['email'])) {
+                ?>
+                    <li class="nav-item"><a href="contact.php" class="nav-link"><span>Appointments</span></a></li>
+                    <li class="nav-item"><a href="contact.php" class="nav-link"><span>Reports</span></a></li>
+                <?php
+                }
+                ?>
+
                 <li class="nav-item"><a href="contact.php" class="nav-link"><span>Contact</span></a></li>
 
+                <?php
+                if (isset($_SESSION['email'])) {
+                ?>
+                    <li class="nav-item cta mr-md-2"><a href="dbh/logout.php" class="nav-link">Logout</a>
+                    </li>
+                <?php
+                }
+                ?>
 
-
-                <li class="nav-item cta mr-md-2"><a href="logout.php" class="nav-link">Logout</a>
-                </li>
-
-
-                <li class="nav-item cta mr-md-2"><a href="appointment.php" class="nav-link">Appointment</a></li>
+                <li class="nav-item cta mr-md-2"><a href="appointment.php" class="nav-link">Book Appointment</a></li>
             </ul>
         </div>
     </div>

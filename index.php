@@ -1,4 +1,5 @@
 <?php
+session_start();
 define("PAGE_TITLE", "Home");
 require "include/header.php";
 require "components/navbar.php";
@@ -38,7 +39,7 @@ require "components/testCard.php";
                             <h2 class="mb-4">We Are <span>Med Labs</span> A Cutting-Edge Medical Lab</h2>
                             <p>
                                 Welcome to Med Labs, your trusted partner for accurate diagnostics. With advanced technology and expert staff, we deliver precise results swiftly. Your health is our priority.</p>
-                            <p><a href="#" class="btn btn-primary py-3 px-4">Make an appointment</a> <a href="#" class="btn btn-secondary py-3 px-4">Contact us</a></p>
+                            <p><a href="#" class="btn btn-primary py-3 px-4">Make an appointment</a> <a href="contact.php" class="btn btn-secondary py-3 px-4">Contact us</a></p>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 <?php
-define("PAGE_TITLE", "Sign Up");
+session_start();
+define("PAGE_TITLE", "Login");
 require "include/header.php";
 require "components/navbar.php";
 

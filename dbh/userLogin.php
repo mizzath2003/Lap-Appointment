@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
         if ($result->num_rows > 0) {
             $_SESSION['email'] = $email;
-            header("Location: ../test.php");
+            header("Location: ../index.php");
         } else {
             $_SESSION['status'] = "Incorrect email or password";
             header("Location: ../login.php");
