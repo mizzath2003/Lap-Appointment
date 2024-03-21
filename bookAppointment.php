@@ -61,7 +61,7 @@ if (isset($_SESSION['email'])) {
         </div>
         <div class="row align-items-center px-md-5">
             <div class="mx-auto px-md-5">
-                <form onsubmit="return verifyPasswords()" action="dbh/appointmentBooking.php" method="POST" class="d-flex justify-content-center align-items-center row g-3 needs-validation px-md-5" novalidate>
+                <form onsubmit="return verifyPasswords()" action="dbh/bookAppointment.php" method="POST" class="d-flex justify-content-center align-items-center row g-3 needs-validation px-md-5" novalidate>
                     <div class="col-md-12">
                         <label for="validationCustom01" class="form-label colorBlack">Patient Name</label>
                         <input type="text" class="form-control formInput" id="validationCustom01" name="name" value="<?= $name ?>" required>
@@ -90,7 +90,7 @@ if (isset($_SESSION['email'])) {
 
                     <div class="col-md-12">
                         <label for="validationCustom01" class="form-label colorBlack">NIC / Passport number</label>
-                        <input type="text" class="form-control formInput" id="validationCustom07" name="name" required>
+                        <input type="text" class="form-control formInput" id="validationCustom07" name="NIC" required>
                         <div class="invalid-feedback">
                             Please enter your NIC / Passport number.
                         </div>
@@ -141,7 +141,7 @@ if (isset($_SESSION['email'])) {
                         <?php
                         if (isset($_SESSION['email'])) {
                         ?>
-                            <button type="submit" class="btn btn-primary btn-lg" name="submit">Book Appointment</button>
+                            <button type="submit" name="submit" class="btn btn-primary btn-lg" name="submit">Book Appointment</button>
                         <?php
                         } else {
                         ?>

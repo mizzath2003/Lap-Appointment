@@ -14,8 +14,15 @@ if (isset($_POST['submit'])) {
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            $_SESSION['email'] = $email;
-            header("Location: ../index.php");
+            while ($row = $result->fetch_assoc()) {
+                if ($row['user_type'] == "admin") {
+                    $_SESSION['admin'] = $email;
+                    header("Location: ../admin/"); // Redirect admin to admin page
+                } else {
+                    $_SESSION['email'] = $email;
+                    header("Location: ../index.php"); // Redirect normal user to index page
+                }
+            }
         } else {
             $_SESSION['status'] = "Incorrect email or password";
             header("Location: ../login.php");
