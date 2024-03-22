@@ -17,12 +17,21 @@
                 <div class="ftco-footer-widget mb-4 ml-md-4">
                     <h2 class="ftco-heading-2">Tests</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blood Tests</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Urine Tests</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Imaging Tests</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Biopsy</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Genetic Testing</a></li>
-                        <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Respiratory Tests</a></li>
+                        <?php
+                        // Fetch test names from the database and populate them as options
+                        $sqlTests = "SELECT `name` FROM `tb_test`";
+                        $resultTests = $conn->query($sqlTests);
+                        if ($resultTests->num_rows > 0) {
+                            while ($rowTest = $resultTests->fetch_assoc()) {
+                                $testName = $rowTest['name'];
+                        ?>
+                                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span><?php echo $testName; ?></a></li>
+
+
+                        <?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -32,7 +41,17 @@
                     <ul class="list-unstyled">
                         <li><a href="index.php"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
                         <li><a href="test.php"><span class="icon-long-arrow-right mr-2"></span>Lab Services</a></li>
+
+                        <?php
+                        if (isset($_SESSION['email'])) {
+                        ?>
+                            <li><a href="appointment.php"><span class="icon-long-arrow-right mr-2"></span>Appointment</a></li>
+                            <li><a href="report.php"><span class="icon-long-arrow-right mr-2"></span>Report</a></li>
+                        <?php
+                        }
+                        ?>
                         <li><a href="contact.php"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+
                     </ul>
                 </div>
             </div>

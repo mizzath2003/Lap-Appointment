@@ -47,8 +47,8 @@
                 <?php
                 if (isset($_SESSION['email'])) {
                 ?>
-                    <li class="nav-item"><a href="contact.php" class="nav-link"><span>Appointments</span></a></li>
-                    <li class="nav-item"><a href="contact.php" class="nav-link"><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="appointment.php" class="nav-link"><span>Appointments</span></a></li>
+                    <li class="nav-item"><a href="report.php" class="nav-link"><span>Reports</span></a></li>
                 <?php
                 }
                 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 define("PAGE_TITLE", "Lab Service");
 require "dbh/dbdata.php";
