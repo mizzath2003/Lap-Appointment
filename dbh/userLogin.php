@@ -17,18 +17,20 @@ if (isset($_POST['submit'])) {
             while ($row = $result->fetch_assoc()) {
                 if ($row['user_type'] == "admin") {
                     $_SESSION['admin'] = $email;
+                    $_SESSION['status'] = "Welcome, Admin!";
                     header("Location: ../admin/"); // Redirect admin to admin page
                 } else {
                     $_SESSION['email'] = $email;
+                    $_SESSION['success'] = "Login successful!";
                     header("Location: ../index.php"); // Redirect normal user to index page
                 }
             }
         } else {
-            $_SESSION['status'] = "Incorrect email or password";
+            $_SESSION['error'] = "Incorrect email or password";
             header("Location: ../login.php");
         }
     } else {
-        $_SESSION['status'] = "Enter login detail to continue";
+        $_SESSION['error'] = "Enter login detail to continue";
         header("Location: ../login.php");
     }
 }

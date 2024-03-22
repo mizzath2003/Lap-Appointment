@@ -22,7 +22,7 @@ class UserRegistration
             $results1 = $this->conn->query($sql1);
 
             if ($results1->num_rows > 0) {
-                $_SESSION['status'] = "Email already taken";
+                $_SESSION['error'] = "Email already taken";
                 header("Location: ../signup.php");
             } else {
                 $sql2 = "INSERT INTO tb_user (name, email, phone, password, status, user_type) VALUES ('$name', '$email', '$phone', '$hashedPassword', 'active', 'user')";
@@ -32,11 +32,12 @@ class UserRegistration
                     die('Could not Enter Data' . $this->conn->error);
                 } else {
                     $_SESSION['email'] = $email;
+                    $_SESSION['success'] = "User registered successfully";
                     header("Location: ../index.php");
                 }
             }
         } else {
-            $_SESSION['status'] = "Fields cannot be blank";
+            $_SESSION['error'] = "Fields cannot be blank";
             header("Location:../signup.php");
         }
     }

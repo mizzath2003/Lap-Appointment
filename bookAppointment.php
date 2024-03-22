@@ -149,17 +149,9 @@ if (isset($_SESSION['email'])) {
 
 
                     <div class="d-grid gap-2 mb-3 mt-5 col-5 mx-auto mb-5">
-                        <?php
-                        if (isset($_SESSION['email'])) {
-                        ?>
-                            <button type="submit" name="submit" class="btn btn-primary btn-lg" name="submit">Book Appointment</button>
-                        <?php
-                        } else {
-                        ?>
-                            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href = 'login.php';">Login to book appointment</button>
-                        <?php
-                        }
-                        ?>
+
+                        <button type="submit" name="submit" class="btn btn-primary btn-lg" name="submit">Book Appointment</button>
+
 
                     </div>
 

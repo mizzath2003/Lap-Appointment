@@ -98,27 +98,6 @@
 <script src="js/google-map.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-<!-- JS for errors -->
-<!-- <script>
-    // Executes the page first before running this function
-    $(document).ready(function() {
-        <?php
-        if (isset($_SESSION['status'])) {
-        ?>
-            $.notify("<?= $_SESSION['status'] ?>");
-
-        <?php unset($_SESSION['status']);
-        } ?>
-    })
-</script> -->
-
-<!-- Notify JS CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script src="js/main.js"></script>
-
-
 <?php
 if (isset($_SESSION['error']) or isset($_SESSION['success'])) {
     $bgColour = isset($_SESSION['error']) ? "danger" : "success";
@@ -145,6 +124,31 @@ if (isset($_SESSION['error']) or isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 ?>
+
+<!-- Notify JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- JS for errors -->
+<script>
+    // Executes the page first before running this function
+    $(document).ready(function() {
+        <?php
+        if (isset($_SESSION['status'])) {
+        ?>
+            $.notify("<?= $_SESSION['status'] ?>");
+
+        <?php unset($_SESSION['status']);
+        } ?>
+    })
+</script>
+
+
+
+
+<script src="js/main.js"></script>
+
+
+
 
 </body>
 

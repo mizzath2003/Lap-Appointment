@@ -1,6 +1,7 @@
 <?php
 // Start the session
 session_start();
+
 require('dbdata.php');
 
 if (isset($_POST['submit'])) {
@@ -16,10 +17,10 @@ if (isset($_POST['submit'])) {
         // Check if user data is retrieved successfully
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $userId = $row['ID']; // Get the user ID
+            $userId = $row['userID']; // Get the user ID
         }
     } else {
-        // Redirect to login page if user is not logged in
+        $_SESSION['error'] = "Login to place Appointment";
         header("Location: ../login.php");
         exit(); // Terminate script execution
     }
@@ -35,24 +36,24 @@ if (isset($_POST['submit'])) {
 
     // Check if any of the required fields are empty
     if (empty($name) || empty($email) || empty($phone) || empty($test) || empty($date) || empty($time) || empty($NIC)) {
-        $_SESSION['status'] = "All fields are required";
+        $_SESSION['error'] = "All fields are required";
         header("Location: ../bookAppointment.php");
         exit(); // Terminate script execution
     }
 
     // Prepare SQL insert statement
-    $sql = "INSERT INTO tb_appointment (name, email, phone, test, date, time, NIC, Status) 
-            VALUES ('$name', '$email', '$phone', '$test', '$date', '$time', '$NIC', '1')";
+    $sql = "INSERT INTO tb_appointment (name, userID, email, phone, test, date, time, NIC, Status) 
+            VALUES ('$name','$userId', '$email', '$phone', '$test', '$date', '$time', '$NIC', '1')";
 
     // Execute the SQL query
     if ($conn->query($sql) === TRUE) {
         // Appointment added successfully
-        $_SESSION['status'] = "Appointment booked successfully";
+        $_SESSION['success'] = "Appointment booked successfully";
         header("Location: ../appointment.php"); // Redirect to appointment page or any other page
         exit(); // Terminate script execution
     } else {
         // Error occurred while adding appointment
-        $_SESSION['status'] = "Error: " . $sql . "<br>" . $conn->error;
+        $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;
         header("Location: ../bookAppointment.php"); // Redirect to appointment page or any other page
         exit(); // Terminate script execution
     }
