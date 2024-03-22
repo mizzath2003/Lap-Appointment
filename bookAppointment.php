@@ -88,20 +88,25 @@ if (isset($_SESSION['email'])) {
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="validationCustom01" class="form-label colorBlack">NIC / Passport number</label>
-                        <input type="text" class="form-control formInput" id="validationCustom07" name="NIC" required>
-                        <div class="invalid-feedback">
-                            Please enter your NIC / Passport number.
-                        </div>
-                    </div>
+
 
                     <div class="col-md-4">
                         <label for="validationCustom04" class="form-label colorBlack">Test</label>
                         <select class="form-select" name="test" id="validationCustom04" required>
                             <option selected disabled value="">Select Test</option>
-                            <option value="Blood">Blood</option>
-                            <option value="Sugar">Sugar</option>
+                            <?php
+                            // Fetch test names from the database and populate them as options
+                            $sqlTests = "SELECT `name` FROM `tb_test`";
+                            $resultTests = $conn->query($sqlTests);
+                            if ($resultTests->num_rows > 0) {
+                                while ($rowTest = $resultTests->fetch_assoc()) {
+                                    $testName = $rowTest['name'];
+                            ?>
+                                    <option value="<?php echo $testName; ?>"><?php echo $testName; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
                         </select>
                         <div class="invalid-feedback">
                             Please select a availabel Test.
@@ -133,7 +138,13 @@ if (isset($_SESSION['email'])) {
                             Please select a Time.
                         </div>
                     </div>
-
+                    <div class="col-md-12">
+                        <label for="validationCustom01" class="form-label colorBlack">NIC number</label>
+                        <input type="text" class="form-control formInput" id="validationCustom07" name="NIC" required>
+                        <div class="invalid-feedback">
+                            Please enter your NIC number.
+                        </div>
+                    </div>
 
 
 

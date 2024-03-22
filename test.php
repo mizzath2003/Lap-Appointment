@@ -1,6 +1,7 @@
 <?php
 
 define("PAGE_TITLE", "Lab Service");
+require "dbh/dbdata.php";
 require "include/header.php";
 require "components/navbar.php";
 require "components/testCard.php";
@@ -30,17 +31,17 @@ require "components/testCard.php";
         <div class="row">
 
             <?php
-            // Assign values to the parameters and call the function
-            $testName = "Blood Test";
-            $description = "Assess various aspects of health such as cholesterol levels, blood cell counts, and disease markers.";
-            $redirectLink = "blood_test.php";
+            $sql = "SELECT `Name`, `Description` FROM `tb_test` ";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $testName = $row['Name'];
+                    $description = $row['Description'];
 
-            testCard($testName, $description, $redirectLink);
-            testCard($testName, $description, $redirectLink);
-            testCard($testName, $description, $redirectLink);
-            testCard($testName, $description, $redirectLink);
-            testCard($testName, $description, $redirectLink);
-            testCard($testName, $description, $redirectLink);
+                    // Call the testCard function with dynamic data
+                    testCard($testName, $description);
+                }
+            }
             ?>
 
         </div>

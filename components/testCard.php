@@ -1,5 +1,5 @@
 <?php
-function testCard($testName, $description, $redirectLink)
+function testCard($testName, $description,)
 {
 ?>
 
@@ -9,7 +9,7 @@ function testCard($testName, $description, $redirectLink)
                 <div class="icon">
                     <span class="flaticon-stethoscope"></span>
                 </div>
-                <h3><a href="<?= $redirectLink ?>"><?= $testName ?></a></h3>
+                <h3><a href="#"><?= $testName ?></a></h3>
                 <p><?= $description ?></p>
             </div>
         </div>
