@@ -7,34 +7,32 @@ if (!isset($_SESSION['admin'])) {
 }
 include('../../dbh/dbdata.php');
 
-if (isset($_POST['btnSubmitMenu'])) {
+if (isset($_POST['submit'])) {
 
     //initializing user inputs   //(real_escape_string)->  used to prevent SQL injection
-    $fname = $conn->real_escape_string($_POST['fname']);
-    $lname = $conn->real_escape_string($_POST['lname']);
-    $username = $conn->real_escape_string(strtolower($_POST['username'])); //converting the username enetered to lowercase
-    $phone = $conn->real_escape_string($_POST['phone']);
+    $fname = $conn->real_escape_string($_POST['name']);
     $email = $conn->real_escape_string($_POST['email']);
+    $phone = $conn->real_escape_string($_POST['phone']);
     $status = $conn->real_escape_string($_POST['status']);
     $userType = $conn->real_escape_string($_POST['userType']);
-    $userID = $conn->real_escape_string($_POST['btnSubmitMenu']);
-
+    $userID = $conn->real_escape_string($_POST['submit']);
 
     //Double checking if user inputs valid data (and not empty values)
-    if ($fname != "" and $lname != "" and $username != "" and $email != "" and  $status != ""  and  $userType != "") {
+    if ($fname != "" && $email != "" && $phone != "" && $status != "" && $userType != "") {
 
-
-        //Updating the user record to database
-        $sql = "UPDATE `tb_user` SET `fname`='$fname',`lname`='$lname',`username`='$username',`phone`='$phone',`email`='$email',`status`='$status',`user_type`= '$userType' WHERE `user_id`='$userID'";
+        //Updating the user record in the database
+        $sql = "UPDATE `tb_user` SET `name`='$fname', `email`='$email', `phone`='$phone', `status`='$status', `user_type`='$userType' WHERE `userID`='$userID'";
         $results = mysqli_query($conn, $sql);
 
         if (!$results) {
             $_SESSION['status'] = 'Could not update user' . mysqli_error($con);
             header("Location: ../users.php");
         } else {
-            // echo "Data entered successfully";
             $_SESSION['status'] = "User updated successfully";
             header("Location: ../users.php");
         }
+    } else {
+        $_SESSION['status'] = "Fields cannot be empty";
+        header("Location: ../userEdit.php?user=$userID");
     }
 }

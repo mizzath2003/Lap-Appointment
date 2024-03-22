@@ -11,20 +11,27 @@ if (isset($_POST['deleteUser'])) {
 
     $userID = $conn->real_escape_string($_POST['deleteUser']);
 
-    //Double checking if user inputs valid data (and not empty values)
+    //Double checking if user input is valid (not empty)
     if ($userID != "") {
 
-        //Updating the user record to database
-        $sql = "DELETE FROM `tb_user` WHERE `user_id`='$userID';DELETE FROM `tb_reservation` WHERE `userID`='$userID';";
-        $results = mysqli_multi_query($conn, $sql);
+        //Deleting the user record from the database
+        $sql = "DELETE FROM `tb_user` WHERE `userID`='$userID'";
+        $result = mysqli_query($conn, $sql);
 
-        if (!$results) {
-            $_SESSION['status'] = 'Could not delete user - ' . mysqli_error($con);
+        // Check if the query was successful
+        if (!$result) {
+            $_SESSION['status'] = 'Could not delete user - ' . mysqli_error($conn);
             header("Location: ../users.php");
-        } else {
-            // echo "Data entered successfully";
-            $_SESSION['status'] = "User deleted successfully";
-            header("Location: ../users.php");
+            exit();
         }
+
+
+        $_SESSION['status'] = "User deleted successfully";
+        header("Location: ../users.php");
+        exit();
     }
 }
+
+// Redirect back to users page if the user ID is empty or not set
+$_SESSION['status'] = "Invalid request";
+header("Location: ../users.php");

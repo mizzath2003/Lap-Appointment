@@ -43,7 +43,7 @@ include_once('components/sidebar.php');
                                 <a href="testEdit.php?test=<?= $row['ID'] ?>">Edit</a>
                             </button>
 
-                            <button name="deleteTest" class="btn btn-error" type="submit" value="<?= $row['ID'] ?>" onclick="return confirm('Are you sure you want to delete this menu? Once deleted you cannot undo');">Delete</button>
+                            <button name="deleteTest" class="btn btn-error" type="submit" value="<?= $row['ID'] ?>" onclick="return confirm('Are you sure you want to delete this Test? Once deleted you cannot undo');">Delete</button>
                         </form>
                     </td>
                 </tr>

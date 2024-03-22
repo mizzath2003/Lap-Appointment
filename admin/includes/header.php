@@ -9,7 +9,7 @@
     <!--php first letter hapital-->
     <title> <?= $pageName ?> | Med Labs </title>
     <!--to define the content for the users of the website-->
-    <meta name="title" content="Signature cuisine - Amazing & Delicious Food" />
+    <meta name="title" content="Med Labs" />
 
     <!--incon of the tital-->
     <link rel="shortcut icon" href="images/logoonly.png" type="image/png" />

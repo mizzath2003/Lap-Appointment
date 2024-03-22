@@ -9,20 +9,12 @@ include_once("includes/header.php");
 include_once('components/sidebar.php');
 ?>
 
-<h1 class="h1">Register User</h1>
+<h1 class="h1">Add User</h1>
 <div class="menuBox">
     <form action="dbh/userRegister.php" class="row" method="POST">
-        <div class="form-content col-4">
-            <label>First Name</label>
-            <input type="text" placeholder="Enter First Name" name="fname">
-        </div>
-        <div class="form-content col-4">
-            <label>Last Name</label>
-            <input type="text" placeholder="Enter Last Name" name="lname">
-        </div>
-        <div class="form-content col-4">
-            <label>Username</label>
-            <input type="text" placeholder="Enter username" name="username">
+        <div class="form-content col-12">
+            <label>Name</label>
+            <input type="text" placeholder="Enter Name" name="name">
         </div>
         <div class="form-content col-6">
             <label>Email</label>
@@ -34,7 +26,7 @@ include_once('components/sidebar.php');
         </div>
         <div class="form-content col-4">
             <label>Phone</label>
-            <input type="number" placeholder="Enter Phone number" name="phone" min="0700000000" max="0789999999">
+            <input type="tel" placeholder="Enter Phone number" name="phone">
         </div>
         <div class="form-content col-4">
             <label>Status</label>
@@ -50,7 +42,7 @@ include_once('components/sidebar.php');
                 <option value="admin">Admin</option>
             </select>
         </div>
-        <button type="submit" class="btnSubmitMenu btn btn-warning" name="btnSubmitMenu">Submit</button>
+        <button type="submit" class="btnSubmitMenu btn btn-warning" name="submit">Add</button>
     </form>
 </div>
 

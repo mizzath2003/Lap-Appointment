@@ -1,47 +1,51 @@
 <?php
 // Start the session
 session_start();
+
+
+// Database connection
 include('../../dbh/dbdata.php');
 
-if (isset($_POST['btnSubmitMenu'])) {
-
-    //initializing user inputs   //(real_escape_string)->  used to prevent SQL injection
-    $fname = $conn->real_escape_string($_POST['fname']);
-    $lname = $conn->real_escape_string($_POST['lname']);
-    $username = $conn->real_escape_string(strtolower($_POST['username'])); //converting the username enetered to lowercase
-    $phone = $conn->real_escape_string($_POST['phone']);
+if (isset($_POST['submit'])) {
+    // Sanitize user inputs to prevent SQL injection
+    $name = $conn->real_escape_string($_POST['name']);
     $email = $conn->real_escape_string($_POST['email']);
+    $password = $conn->real_escape_string($_POST['password']);
+    $phone = $conn->real_escape_string($_POST['phone']);
     $status = $conn->real_escape_string($_POST['status']);
-    $user_type = $conn->real_escape_string($_POST['userType']);
-    //password encryption
-    $hashedPassword = $conn->real_escape_string(sha1($_POST['password']));
+    $userType = $conn->real_escape_string($_POST['userType']);
 
+    // Check if any field is empty
+    if ($name != "" && $email != "" && $password != "") {
 
-    //Double checking if user inputs valid data (and not empty values)
-    if ($fname != "" and $lname != "" and $username != "" and $email != "" and $phone != "" and $status != ""  and $user_type != "" and $_POST['password'] != "") {
+        // Check if email already exists
+        $sqlCheckEmail = "SELECT * FROM `tb_user` WHERE `email`='$email'";
+        $resultCheckEmail = mysqli_query($conn, $sqlCheckEmail);
+        if (mysqli_num_rows($resultCheckEmail) > 0) {
+            $_SESSION['status'] = "Email already taken";
+            header("Location: ../userAdd.php");
+            exit();
+        }
 
-        //Double checking if userName already exists in database
-        $sql1 = "SELECT `username` FROM `tb_user` WHERE `username`='$username'";
-        $results1 = mysqli_query($conn, $sql1);
-        if ($results1->num_rows > 0) {
-            $_SESSION['status'] = "Username already taken";
-            header("Location:../userAdd.php");
+        // Hash the password
+        $hashedPassword = sha1($password);
+
+        // Insert the user into the database
+        $sqlAddUser = "INSERT INTO `tb_user` (`name`, `email`, `password`, `phone`, `status`, `user_type`) VALUES ('$name', '$email', '$hashedPassword', '$phone', '$status', '$userType')";
+        $resultAddUser = mysqli_query($conn, $sqlAddUser);
+
+        if (!$resultAddUser) {
+            $_SESSION['status'] = "Error adding user: " . mysqli_error($conn);
+            header("Location: ../userAdd.php");
+            exit();
         } else {
-
-            //Inserting the new user record to database
-            $sql2 = "INSERT INTO tb_user" . "(fname, lname, username, phone, email, password, status, user_type)" . "VALUES ('$fname', '$lname', '$username', '$phone', '$email', '$hashedPassword','$status','$user_type')";
-            $results2 = mysqli_query($conn, $sql2);
-
-            if (!$results2) {
-                die('Could not Enter Data' . mysqli_error($conn));
-            } else {
-                // echo "Data entered successfully";
-                $_SESSION['userName'] = $username;
-                header("Location: ../users.php");
-            }
+            $_SESSION['status'] = "User added successfully";
+            header("Location: ../users.php");
+            exit();
         }
     } else {
-        $_SESSION['status'] = "Field's cant be blank";
+        $_SESSION['status'] = "Fields can't be blank";
         header("Location: ../userAdd.php");
+        exit();
     }
 }
