@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
     die();
 }
-$pageName = "User | Edit";
+$pageName = "User Edit";
 include_once("includes/header.php");
 include_once('components/sidebar.php');
 include_once("../dbh/dbdata.php");
@@ -23,7 +23,7 @@ if ($results1->num_rows > 0) {
     }
 }
 ?>
-<h1>Edit User</h1>
+<h1 class="h1">Edit User</h1>
 <div class="menuBox">
     <form action="dbh/userUpdate.php" class="row" method="POST">
         <div class="form-content col-4">

@@ -4,12 +4,12 @@ if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
     die();
 }
-$pageName = "User | Add";
+$pageName = "User Add";
 include_once("includes/header.php");
 include_once('components/sidebar.php');
 ?>
 
-<h1>Register User</h1>
+<h1 class="h1">Register User</h1>
 <div class="menuBox">
     <form action="dbh/userRegister.php" class="row" method="POST">
         <div class="form-content col-4">

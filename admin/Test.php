@@ -4,29 +4,28 @@ if (!isset($_SESSION['admin'])) {
     header("Location: ../login.php");
     die();
 }
-$pageName = "Menu";
+$pageName = "Test";
 include_once("includes/header.php");
 include_once('components/sidebar.php');
 ?>
 <div class="header-section">
-    <h1 class="h1">Menu</h1>
-    <a href="menuAdd.php"><button class="btn btn-warning">Add Menu</button></a>
+    <h1 class="h1">Test</h1>
+    <a href="testAdd.php"><button class="btn btn-warning">Add Tests</button></a>
 </div>
 <div class="tableDiv">
     <table class="tableSC">
         <tr>
             <th>No</th>
-            <th>Image</th>
             <th>Name</th>
-            <th>Price</th>
             <th>Description</th>
+            <th>Price</th>
             <th>Manage</th>
         </tr>
 
         <?php
         include_once("../dbh/dbdata.php");
         $i = 1;
-        $sql1 = "SELECT * FROM `tb_menu`";
+        $sql1 = "SELECT `ID`, `name`, `description`, `price` FROM `tb_test`";
         $results1 = mysqli_query($conn, $sql1);
         if ($results1->num_rows > 0) {
             while ($row = $results1->fetch_assoc()) {
@@ -34,18 +33,17 @@ include_once('components/sidebar.php');
 
                 <tr>
                     <td><?= $i++ ?></td>
-                    <td style="width:100px;"><img src="dbh/<?= $row['image'] ?>" width="98px" alt="menu-img"></td>
-                    <td><?= $row['menu_name'] ?></td>
+                    <td><?= $row['name'] ?></td>
+                    <td style="max-width:500px"><?= $row['description'] ?></td>
                     <td>LKR <?= $row['price'] ?></td>
-                    <td style="max-width:250px"><?= $row['description'] ?></td>
                     <td>
-                        <form action="dbh/menuDelete.php" method="POST">
+                        <form action="dbh/testDelete.php" method="POST">
 
                             <button type="button" class="btn btn-info mr-1">
-                                <a href="menuEdit.php?menu=<?= $row['menu_id'] ?>">Edit</a>
+                                <a href="testEdit.php?test=<?= $row['ID'] ?>">Edit</a>
                             </button>
 
-                            <button name="deleteMenu" class="btn btn-error" type="submit" value="<?= $row['menu_id'] ?>" onclick="return confirm('Are you sure you want to delete this menu? Once deleted you cannot undo');">Delete</button>
+                            <button name="deleteTest" class="btn btn-error" type="submit" value="<?= $row['ID'] ?>" onclick="return confirm('Are you sure you want to delete this menu? Once deleted you cannot undo');">Delete</button>
                         </form>
                     </td>
                 </tr>

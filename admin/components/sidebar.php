@@ -7,8 +7,8 @@
     <!-- <img src="images/fulllogo.png" width="160px" alt="Logo"> -->
     <p style="font-weight: 800; font-size: 32px;">Med Labs</p>
     <a href="./" class="<?= ($pageName == "Home") ? "active" : ""; ?>">Home</a>
-    <a href="./reservation.php" class="<?= ($pageName == "Reservations") ? "active" : ""; ?>">Reservations</a>
-    <a href="./menu.php" class="<?= ($pageName == "Menu") ? "active" : ""; ?>">Menu</a>
+    <a href="./appointment.php" class="<?= ($pageName == "Appointment") ? "active" : ""; ?>">Appointment</a>
+    <a href="./Test.php" class="<?= ($pageName == "Test") ? "active" : ""; ?>">Test</a>
     <a href="./users.php" class="<?= ($pageName == "Users") ? "active" : ""; ?>">Users</a>
     <!-- <button class="collapsible">Users</button>
     <div class=" content">
