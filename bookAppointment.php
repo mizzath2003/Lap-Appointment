@@ -95,6 +95,7 @@ if (isset($_SESSION['email'])) {
                         <select class="form-select" name="test" id="validationCustom04" required>
                             <option selected disabled value="">Select Test</option>
                             <?php
+                            
                             // Fetch test names from the database and populate them as options
                             $sqlTests = "SELECT `name` FROM `tb_test`";
                             $resultTests = $conn->query($sqlTests);

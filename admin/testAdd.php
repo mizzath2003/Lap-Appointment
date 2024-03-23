@@ -25,7 +25,7 @@ include_once('components/sidebar.php');
             <textarea placeholder="Enter description" name="description" id="" rows="5"></textarea>
         </div>
 
-        <button type="submit" class="btnSubmitMenu btn btn-warning" name="submit">Submit</button>
+        <button type="submit" class="btnSubmitMenu btn btn-warning" name="submit">Add</button>
     </form>
 </div>
 <?php include_once("includes/footer.php"); ?>

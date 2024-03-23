@@ -18,6 +18,7 @@
                     <h2 class="ftco-heading-2">Tests</h2>
                     <ul class="list-unstyled">
                         <?php
+                        require('dbh/dbdata.php');
                         // Fetch test names from the database and populate them as options
                         $sqlTests = "SELECT `name` FROM `tb_test`";
                         $resultTests = $conn->query($sqlTests);

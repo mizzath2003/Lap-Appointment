@@ -24,6 +24,8 @@ include_once('components/sidebar.php');
             <th>Date</th>
             <th>Time</th>
             <th>NIC</th>
+            <th>Report Status</th>
+            <th>Add Report</th>
             <!-- <th>Status</th> -->
         </tr>
 
@@ -34,6 +36,11 @@ include_once('components/sidebar.php');
         $results = mysqli_query($conn, $sql);
         if ($results->num_rows > 0) {
             while ($row = $results->fetch_assoc()) {
+
+                // Determine if report is added or not
+                $reportStatus = !empty($row['Report']) ? 'Added' : 'Not added';
+                // Set color based on report status
+                $color = !empty($row['Report']) ? '#2ab52a' : '#cf2c2c';
         ?>
 
                 <tr>
@@ -45,7 +52,16 @@ include_once('components/sidebar.php');
                     <td><?= $row['date'] ?></td>
                     <td><?= $row['time'] ?></td>
                     <td><?= $row['NIC'] ?></td>
-                    <!-- <td><?= $row['Status'] ?></td> -->
+                    <td style="color: <?= $color ?>"><?= $reportStatus ?></td>
+                    <td>
+                        <form action="" method="POST">
+
+                            <button type="button" class="btn btn-info mr-1">
+                                <a href="addReport.php?appointment=<?= $row['ID'] ?>">Add Report</a>
+                            </button>
+
+                        </form>
+                    </td>
                 </tr>
 
         <?php
