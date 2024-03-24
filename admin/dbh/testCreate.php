@@ -1,31 +1,63 @@
 <?php
 // Start the session
 session_start();
-include('../../dbh/dbdata.php');
 
+// Include database connection
+require_once('../../dbh/dbdata.php');
+
+// Define a class for adding tests
+class TestAdder
+{
+    private $conn;
+
+    // Constructor to initialize the database connection
+    public function __construct($conn)
+    {
+        $this->conn = $conn;
+    }
+
+    // Method to add a new test
+    public function addTest($name, $price, $description)
+    {
+        // Check if any field is empty
+        if (empty($name) || empty($price) || empty($description)) {
+            return "Fields can't be blank";
+        }
+
+        // Insert the test into the database
+        $sql = "INSERT INTO `tb_test` (`name`, `description`, `price`) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssd", $name, $description, $price);
+
+        if ($stmt->execute()) {
+            return "Test added successfully";
+        } else {
+            return "Could not add test: " . $stmt->error;
+        }
+    }
+}
+
+// Create an instance of TestAdder class
+$testAdder = new TestAdder($conn);
+
+// Handle form submission
 if (isset($_POST['submit'])) {
-
-    //initializing user inputs   //(real_escape_string)->  used to prevent SQL injection
+    // Sanitize user inputs to prevent SQL injection
     $name = $conn->real_escape_string($_POST['name']);
     $price = $conn->real_escape_string($_POST['price']);
     $description = $conn->real_escape_string($_POST['description']);
 
-    //Double checking if user inputs valid data (and not empty values)
-    if ($name != "" and $price != "" and $description != "") {
+    // Add test using the TestAdder class
+    $statusMessage = $testAdder->addTest($name, $price, $description);
 
-        //Double checking if test name already exists in the database
-        $sql1 = "INSERT INTO `tb_test`(`name`, `description`, `price`) VALUES ('$name','$description','$price')";
+    // Set session status message based on the result
+    $_SESSION['status'] = $statusMessage;
 
-        $results1 = mysqli_query($conn, $sql1);
-
-        if (!$results1) {
-            die('Could not Enter Data' . mysqli_error($conn));
-        } else {
-            $_SESSION['status'] = "Test added successfully";
-            header("Location: ../Test.php");
-        }
+    // Redirect to appropriate page
+    if ($statusMessage === "Test added successfully") {
+        header("Location: ../Test.php");
     } else {
-        $_SESSION['status'] = "Fields can't be blank";
         header("Location: ../testAdd.php");
     }
+    exit(); // Terminate script execution
 }

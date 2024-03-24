@@ -45,7 +45,7 @@ include_once('components/sidebar.php');
                                 <a href="userEdit.php?user=<?= $row['userID'] ?>">Edit</a>
                             </button>
 
-                            <button name="deleteUser" class="btn btn-error" type="submit" value="<?= $row['userID'] ?>" onclick="return confirm('All details and reservations relevant to this user will be deleted. Are you sure you want to delete this user? Once deleted you cannot undo');">Delete</button>
+                            <button name="deleteUser" class="btn btn-error" type="submit" value="<?= $row['userID'] ?>" onclick="return confirm('Are you sure you want to delete this user? Once deleted you cannot undo');">Delete</button>
                         </form>
                     </td>
                 </tr>

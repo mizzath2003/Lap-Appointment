@@ -95,7 +95,7 @@ if (isset($_SESSION['email'])) {
                         <select class="form-select" name="test" id="validationCustom04" required>
                             <option selected disabled value="">Select Test</option>
                             <?php
-                            
+
                             // Fetch test names from the database and populate them as options
                             $sqlTests = "SELECT `name` FROM `tb_test`";
                             $resultTests = $conn->query($sqlTests);
@@ -170,19 +170,40 @@ if (isset($_SESSION['email'])) {
         // Get the date input field
         var dateInput = document.getElementById('validationCustom05');
 
+        // Get the current date
+        var currentDate = new Date();
+        var currentDateString = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+
+        // Set the minimum date attribute to the current date
+        dateInput.min = currentDateString;
+
+        // Set the value of the date input field to the current date
+        dateInput.value = currentDateString;
+
         // Add change event listener to the date input field
         dateInput.addEventListener('change', function() {
             var selectedDate = new Date(this.value); // Get the selected date
+
+            // If the selected date is before the current date, clear the input value
+            if (selectedDate < currentDate) {
+                alert('Cannot select past dates. Please select today or a future date.');
+                this.value = currentDateString; // Reset to current date
+                return;
+            }
+
             var day = selectedDate.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 
-            // If the selected date is a Sunday, clear the input value
+            // If the selected date is a Sunday, display an alert message
             if (day === 0) {
                 alert('We are closed on Sundays. Please select any other date.');
-                this.value = ''; // Clear the input value
+                this.value = currentDateString; // Reset to current date
             }
         });
     });
 </script>
+
+
+
 
 
 <?php require "include/footer.php"; ?>

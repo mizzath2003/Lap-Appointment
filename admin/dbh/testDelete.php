@@ -1,31 +1,60 @@
 <?php
 // Start the session
 session_start();
-if (!isset($_SESSION['admin'])) {
-    header("Location: ../login.php");
-    die();
-}
-include('../../dbh/dbdata.php');
 
-if (isset($_POST['deleteTest'])) {
+// Include database connection
+require_once('../../dbh/dbdata.php');
 
-    $test_id = $conn->real_escape_string($_POST['deleteTest']);
+// Define a class for deleting tests
+class TestDeleter
+{
+    private $conn;
 
-    //Double checking if user inputs valid data (and not empty values)
-    if ($test_id != "") {
+    // Constructor to initialize the database connection
+    public function __construct($conn)
+    {
+        $this->conn = $conn;
+    }
 
-        //Deleting the test record from the database
-        $sql = "DELETE FROM `tb_test` WHERE `ID`='$test_id';";
-        $result = mysqli_query($conn, $sql);
+    // Method to delete a test record
+    public function deleteTest($testId)
+    {
+        // Check if test ID is not empty
+        if (!empty($testId)) {
+            // Delete the test record from the database
+            $sql = "DELETE FROM `tb_test` WHERE `ID`=?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("i", $testId);
 
-        if (!$result) {
-            $_SESSION['status'] = 'Could not delete test - ' . mysqli_error($conn);
-            header("Location: ../Test.php");
-            exit();
+            if ($stmt->execute()) {
+                return "Test deleted successfully";
+            } else {
+                return "Could not delete test - " . $stmt->error;
+            }
         } else {
-            $_SESSION['status'] = "Test deleted successfully";
-            header("Location: ../Test.php");
-            exit();
+            return "Invalid test ID";
         }
     }
+}
+
+// Create an instance of TestDeleter class
+$testDeleter = new TestDeleter($conn);
+
+// Handle form submission
+if (isset($_POST['deleteTest'])) {
+    $testId = $conn->real_escape_string($_POST['deleteTest']);
+
+    // Delete test using the TestDeleter class
+    $statusMessage = $testDeleter->deleteTest($testId);
+
+    // Set session status message based on the result
+    $_SESSION['status'] = $statusMessage;
+
+    // Redirect back to test page
+    header("Location: ../Test.php");
+    exit(); // Terminate script execution
+} else {
+    // Redirect if delete button not clicked
+    header("Location: ../Test.php");
+    exit();
 }

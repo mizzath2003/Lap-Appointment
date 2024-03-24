@@ -4,15 +4,53 @@ session_start();
 
 require('dbdata.php');
 
-if (isset($_POST['submit'])) {
+class AppointmentHandler
+{
+    private $conn;
 
+    public function __construct($conn)
+    {
+        $this->conn = $conn;
+    }
+
+    public function bookAppointment($name, $email, $phone, $test, $date, $time, $NIC, $userId)
+    {
+        // Prepare SQL insert statement
+        $sql = "INSERT INTO tb_appointment (name, userID, email, phone, test, date, time, NIC, Status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, '1')";
+
+        // Prepare and bind parameters
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssssssss", $name, $userId, $email, $phone, $test, $date, $time, $NIC);
+
+        // Execute the SQL query
+        if ($stmt->execute()) {
+            // Appointment added successfully
+            $_SESSION['success'] = "Appointment booked successfully";
+            header("Location: ../appointment.php");
+            exit();
+        } else {
+            // Error occurred while adding appointment
+            $_SESSION['error'] = "Error: " . $sql . "<br>" . $this->conn->error;
+            header("Location: ../bookAppointment.php");
+            exit();
+        }
+    }
+}
+
+// Instantiate the AppointmentHandler class
+$appointmentHandler = new AppointmentHandler($conn);
+
+if (isset($_POST['submit'])) {
     // Check if the user is logged in
     if (isset($_SESSION['email'])) {
-
         // Get user details from session
         $email = $_SESSION['email'];
-        $sql = "SELECT * FROM tb_user WHERE email = '$email'";
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM tb_user WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         // Check if user data is retrieved successfully
         if ($result->num_rows > 0) {
@@ -22,7 +60,7 @@ if (isset($_POST['submit'])) {
     } else {
         $_SESSION['error'] = "Login to place Appointment";
         header("Location: ../login.php");
-        exit(); // Terminate script execution
+        exit();
     }
 
     // Get appointment details from form submission
@@ -38,27 +76,13 @@ if (isset($_POST['submit'])) {
     if (empty($name) || empty($email) || empty($phone) || empty($test) || empty($date) || empty($time) || empty($NIC)) {
         $_SESSION['error'] = "All fields are required";
         header("Location: ../bookAppointment.php");
-        exit(); // Terminate script execution
+        exit();
     }
 
-    // Prepare SQL insert statement
-    $sql = "INSERT INTO tb_appointment (name, userID, email, phone, test, date, time, NIC, Status) 
-            VALUES ('$name','$userId', '$email', '$phone', '$test', '$date', '$time', '$NIC', '1')";
-
-    // Execute the SQL query
-    if ($conn->query($sql) === TRUE) {
-        // Appointment added successfully
-        $_SESSION['success'] = "Appointment booked successfully";
-        header("Location: ../appointment.php"); // Redirect to appointment page or any other page
-        exit(); // Terminate script execution
-    } else {
-        // Error occurred while adding appointment
-        $_SESSION['error'] = "Error: " . $sql . "<br>" . $conn->error;
-        header("Location: ../bookAppointment.php"); // Redirect to appointment page or any other page
-        exit(); // Terminate script execution
-    }
+    // Book the appointment
+    $appointmentHandler->bookAppointment($name, $email, $phone, $test, $date, $time, $NIC, $userId);
 } else {
     // Redirect to appointment page if form is not submitted
     header("Location: ../bookAppointment.php");
-    exit(); // Terminate script execution
+    exit();
 }
