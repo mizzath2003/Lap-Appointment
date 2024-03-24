@@ -17,4 +17,4 @@ Follow these steps to set up the Lab Appointment System on your local machine:
 
 1. **Clone the Repository**:
    ```bash
-   [git clone https://github.com/yourusername/lab-appointment-system.git](https://github.com/mizzath2003/Lap-Appointment.git)https://github.com/mizzath2003/Lap-Appointment.git
+   git clone https://github.com/mizzath2003/Lap-Appointment.git
