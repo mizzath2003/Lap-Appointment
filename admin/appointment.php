@@ -66,6 +66,8 @@ include_once('components/sidebar.php');
 
         <?php
             }
+        } else {
+            echo "<tr><td colspan='7'>No Appointment found</td></tr>";
         }
         ?>
 

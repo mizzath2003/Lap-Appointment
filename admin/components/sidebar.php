@@ -13,21 +13,9 @@
     <a href="./Test.php" class="<?= ($pageName == "Test") ? "active" : ""; ?>">Test</a>
 
     <a href="./appointment.php" class="<?= ($pageName == "Appointment") ? "active" : ""; ?>">Appointment</a>
-    <!-- <button class="collapsible">Users</button>
-    <div class=" content">
-        <a href="#">Register</a>
-        <a href="#">Update</a>
-    </div>
-    <button class="collapsible">Menu</button>
-    <div class="content">
-        <a href="menu.php">View</a>
-        <a href="../menuAdd.php">Update</a>
-    </div>
-    <button class="collapsible">Reservation</button>
-    <div class="content">
-        <a href="">View</a>
-        <a href="#">Update</a>
-    </div> -->
+    <a href="./reports.php" class="<?= ($pageName == "Report") ? "active" : ""; ?>">Report</a>
+
+    
     <a href="../dbh/logout.php" style="margin-top:auto" class="bottom-align-div"><i class="fa-solid fa-power-off"></i> Logout</a>
 </div>
 <div class="mainSec open">

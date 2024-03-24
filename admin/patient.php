@@ -8,8 +8,9 @@ $pageName = "Patients";
 include_once("includes/header.php");
 include_once('components/sidebar.php');
 ?>
-<div class="header-section">
+<div class="searchAlign">
     <h1 class="h1">Patient Users</h1>
+    <input class="searchBar" type="text" id="myInput" placeholder="Search...">
 </div>
 <div class="tableDiv">
     <table class="tableSC">
@@ -46,8 +47,10 @@ include_once('components/sidebar.php');
                         </form>
                     </td>
                 </tr>
-        <?php
+                <?php
             }
+        } else {
+            echo "<tr><td colspan='7'>No Patients found</td></tr>";
         }
         ?>
 

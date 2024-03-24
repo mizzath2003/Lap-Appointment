@@ -43,6 +43,8 @@ if (isset($_POST['submit'])) {
                 $sql = "UPDATE tb_appointment SET Report = '$fileFullPath' WHERE ID = '$appointment_id'";
                 if ($conn->query($sql) === TRUE) {
                     $_SESSION['status'] = "Report added successfully";
+                    header("Location: ../reports.php");
+                    exit();
                 } else {
                     $_SESSION['status'] = "Error updating appointment record: " . $conn->error;
                 }

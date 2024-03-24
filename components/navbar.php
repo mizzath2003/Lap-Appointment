@@ -42,7 +42,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav nav ml-auto">
                 <li class="nav-item"><a href="index.php" class="nav-link"><span>Home</span></a></li>
-                <li class="nav-item"><a href="test.php" class="nav-link"><span>Lab Services</span></a></li>
+                <li class="nav-item"><a href="test.php" class="nav-link"><span>Lab Tests</span></a></li>
 
                 <?php
                 if (isset($_SESSION['email'])) {
