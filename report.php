@@ -38,7 +38,7 @@ if ($userResult->num_rows > 0) {
     $userID = $userData['userID'];
 
     // Query reports for the user
-    $reportQuery = "SELECT `test`, `date`, `time`, `Report` FROM `tb_appointment` WHERE `userID` = '$userID'";
+    $reportQuery = "SELECT `test`, `date`, `time`, `Report` FROM `tb_appointment` WHERE `userID` = '$userID' AND `Report` != ''";
     $reportResult = $conn->query($reportQuery);
 
     if ($reportResult->num_rows > 0) {
